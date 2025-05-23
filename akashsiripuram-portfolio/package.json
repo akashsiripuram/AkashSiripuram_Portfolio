@@ -13,6 +13,7 @@
     "@tailwindcss/cli": "^4.1.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "leetcode-query": "^2.0.0",
     "lucide-react": "^0.509.0",
     "motion": "^12.12.1",
     "next": "15.3.2",

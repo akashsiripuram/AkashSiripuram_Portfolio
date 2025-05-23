@@ -2,10 +2,77 @@
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { BackgroundLines } from "@/components/ui/background-lines";
 import { FadeIn } from "@/components/ui/fade-in";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Experience from "@/components/Experience/Experience";
 import { cn } from "@/lib/utils";
 import { Projects } from "@/components/Projects/Projects";
+import {  SkillsSection } from "@/components/skills/skills";
+
+
+
+// Custom hook for intersection observer
+const useInView = (options = {}) => {
+  const [isInView, setIsInView] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const ref = useRef(null);
+  
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          setIsInView(true);
+          setHasAnimated(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px 0px',
+        ...options,
+      }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, [hasAnimated, options]);
+
+  return [ref, isInView];
+};
+
+// Scroll-triggered FadeIn component
+const ScrollFadeIn = ({ children, delay = 0, duration = 1000, direction = "up", className = "" }) => {
+  const [ref, isInView] = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all ease-out ${
+        isInView
+          ? 'opacity-100 translate-y-0 translate-x-0'
+          : `opacity-0 ${
+              direction === 'up' ? 'translate-y-8' :
+              direction === 'down' ? '-translate-y-8' :
+              direction === 'left' ? 'translate-x-8' :
+              direction === 'right' ? '-translate-x-8' : 'translate-y-8'
+            }`
+      } ${className}`}
+      style={{
+        transitionDuration: `${duration}ms`,
+        transitionDelay: isInView ? `${delay}ms` : '0ms',
+      }}
+    >
+      {children}
+    </div>
+  );
+};
+
 export default function Page() {
   const [imageHovered, setImageHovered] = useState(false);
   const words = [
@@ -148,20 +215,37 @@ export default function Page() {
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
         
         <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4">
-          <FadeIn>
+          <ScrollFadeIn>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-12">
               Experience
             </h1>
-          </FadeIn>
-          <FadeIn delay={300} duration={1000} direction="up">
+          </ScrollFadeIn>
+          <ScrollFadeIn delay={300} duration={1000} direction="up">
             <Experience />
-          </FadeIn>
+          </ScrollFadeIn>
         </div>
       </div>
       
       {/* Projects Section */}
       <div
         id="projects"
+        className="relative flex min-h-screen py-16 w-full items-center justify-center bg-white dark:bg-black">
+        
+        {/* Radial gradient for the container to give a faded look */}
+        
+        <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4">
+          <ScrollFadeIn>
+            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-12">
+              Projects
+            </h1>
+          </ScrollFadeIn>
+          <ScrollFadeIn delay={300} duration={1000} direction="up">
+            <Projects />
+          </ScrollFadeIn>
+        </div>
+      </div>
+       <div
+        id="skills"
         className="relative flex min-h-screen py-16 w-full items-center justify-center bg-white dark:bg-black">
         <div
           className={cn(
@@ -175,15 +259,17 @@ export default function Page() {
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
         
         <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4">
-          <FadeIn>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-12">
-              Projects
-            </h1>
-          </FadeIn>
-          <FadeIn delay={300} duration={1000} direction="up">
-            <Projects />
-          </FadeIn>
+         
+          <ScrollFadeIn>
+            <SkillsSection/>
+          </ScrollFadeIn>
+          
         </div>
+      </div>
+      <div>
+        <h2>Coding Profiles</h2>
+       
+
       </div>
     </div>
   );
