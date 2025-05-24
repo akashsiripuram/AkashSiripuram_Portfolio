@@ -10,7 +10,7 @@ interface SkillCardProps {
 
 export function SkillCard({ title, icon, skills, iconColor }: SkillCardProps) {
   return (
-    <div className="bg-black/20 backdrop-blur-sm border h-[350px] border-gray-800 rounded-lg p-6 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg hover:shadow-black/10">
+    <div className="bg-black backdrop-blur-sm border h-[350px] border-gray-800 rounded-lg p-6 transition-all duration-300 hover:translate-y-[-4px] hover:shadow-lg hover:shadow-black/10">
       <div className={cn("w-12 h-12 flex items-center justify-center rounded-md mb-4", iconColor)}>
         {icon}
       </div>
