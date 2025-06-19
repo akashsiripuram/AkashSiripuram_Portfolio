@@ -19,9 +19,9 @@ export const FadeIn = ({
   duration = 500,
   direction = "up",
   distance = 20,
-  threshold = 0.1,
 }: FadeInProps) => {
   const [isVisible, setIsVisible] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hasAnimated, setHasAnimated] = useState(false);
   
   useEffect(() => {

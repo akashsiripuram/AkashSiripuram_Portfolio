@@ -10,6 +10,7 @@ import { SkillsSection } from "@/components/skills/skills";
 import CodingStats from "@/components/CodingProfiles/leetcode";
 import Achievements from "@/components/Achievements/Achievements";
 import Footer from "@/components/contact/contact";
+import Project from "@/components/Project/Project";
 
 // Enhanced hook for intersection observer with multiple thresholds
 const useInView = (options = {}) => {
@@ -49,14 +50,22 @@ const useInView = (options = {}) => {
 };
 
 // Enhanced Scroll-triggered component with smooth reveal
-const SmoothScrollReveal = ({ 
-  children, 
-  delay = 0, 
-  duration = 800, 
-  direction = "up", 
+const SmoothScrollReveal = ({
+  children,
+  delay = 0,
+  duration = 800,
+  direction = "up",
   className = "",
   distance = 50,
   easing = "cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  duration?: number;
+  direction?: "up" | "down" | "left" | "right";
+  className?: string;
+  distance?: number;
+  easing?: string;
 }) => {
   const [ref, isInView, ratio] = useInView();
   
@@ -98,25 +107,7 @@ const SmoothScrollReveal = ({
 };
 
 // Staggered animation container for multiple children
-const StaggerContainer = ({ children, staggerDelay = 100, className = "" }) => {
-  return (
-    <div className={className}>
-      {Array.isArray(children) 
-        ? children.map((child, index) => (
-            <SmoothScrollReveal 
-              key={index} 
-              delay={index * staggerDelay}
-              duration={600}
-              direction="up"
-            >
-              {child}
-            </SmoothScrollReveal>
-          ))
-        : children
-      }
-    </div>
-  );
-};
+
 
 // Parallax scroll effect hook
 const useParallax = (speed = 0.5) => {
@@ -209,7 +200,7 @@ export default function Page() {
         <div className="flex flex-col items-center justify-center w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
           <FadeIn>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-              Hi , I'm
+              Hi , I&apos;m
             </h1>
           </FadeIn>
 
@@ -329,7 +320,8 @@ export default function Page() {
             </h1>
           </SmoothScrollReveal>
           <SmoothScrollReveal delay={200} duration={1000} direction="up" distance={80}>
-            <Projects />
+            {/* <Projects /> */}
+            <Project/>
           </SmoothScrollReveal>
         </div>
       </div>

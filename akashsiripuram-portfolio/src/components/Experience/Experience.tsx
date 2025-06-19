@@ -1,4 +1,4 @@
-import { GlowingEffect } from "../ui/glowing-effect";
+
 
 export default function Experience() {
   const experiences = [

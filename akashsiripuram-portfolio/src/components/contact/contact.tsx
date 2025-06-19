@@ -67,10 +67,10 @@ const Footer = () => {
           {/* Left Side - Contact Info & Social Links */}
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-white mb-4">Let's Connect</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s Connect</h3>
               <p className="text-gray-400 text-lg leading-relaxed">
                 Always open to discussing new opportunities, collaborations, and innovative projects. 
-                Let's build something amazing together!
+                Let&apos;s build something amazing together!
               </p>
             </div>
 
