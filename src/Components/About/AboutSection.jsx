@@ -21,7 +21,7 @@ const technicalProfiles = [
 const educationData = [
   { title: "Graduation", College: "CVR College of Engineering", Course: "Bachelor's of Technology", Branch: "Computer Science and Engineering", Marks: <span>CGPA: 9.24 (Till 6<sup>th</sup> Sem)</span>, Year: "Duration: 2022 - 2026" },
   { title: "Senior Secondary", College: "Alphores Junior College", Course: "Physics, Chemistry and Mathematics", Branch: "Marks: 989/1000", Marks: "Percentage: 98.90 %", Year: "Duration: 2020 - 2022" },
-  { title: "Secondary Education", College: "Siddartha High School", Branch: "CGPA : 10", Marks: "Percentage:  %", Year: "Duration: 2019 - 2020" },
+  { title: "Secondary Education", College: "Siddartha High School", Branch: "CGPA : 10", Marks: "Percentage: 100%", Year: "Duration: 2019 - 2020" },
 ];
 
 const lang = [
