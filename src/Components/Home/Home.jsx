@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 import ContactForm from "../Contact/ContactFormCard";
 import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp, FaGithub, FaFacebook } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import MyImg from "../../assets/Profile.JPG";
+import Profile from "../../assets/Profile.JPG";
 
 function Home() {
     const portfolioContent = {
@@ -111,7 +111,7 @@ function Home() {
             {/* RIGHT HALF: Image and Social Icons */}
             <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[300px] sm:h-[400px] md:h-[500px] mt-8 lg:mt-0">
                 <motion.div className="absolute w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border-2 border-green-500/50 dark:border-green-400/30" animate={{ scale: [1, 1.02, 1], rotate: [0, 360] }} transition={{ scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 40, repeat: Infinity, ease: "linear" } }} />
-                <motion.img src={MyImg} alt="Shiva Singh" 
+                <motion.img src={Profile} alt="Akash Siripuram" 
                 className="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover shadow-2xl border-4 border-green-500/50 dark:border-green-400/30 relative z-10" 
                 initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} viewport={{ once: true}} 
                 transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }} 
