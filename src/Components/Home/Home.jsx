@@ -4,7 +4,7 @@ import { TypeAnimation } from "react-type-animation";
 import ContactForm from "../Contact/ContactFormCard";
 import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp, FaGithub, FaFacebook } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
-import Profile from "../../assets/Profile.JPG";
+import Profile from "../../assets/Profile.jpg"
 
 function Home() {
     const portfolioContent = {
