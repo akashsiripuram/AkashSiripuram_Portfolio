@@ -9,7 +9,7 @@ const skillsData = [
     {
         title: "Programming Languages",
         skills: [
-            { name: "Java", logo: getImage("Cpp.svg"), level: 75 },
+            { name: "Java", logo: getImage("java.svg"), level: 75 },
             { name: "JavaScript", logo: getImage("JavaScript.svg"), level: 80 },
             { name: "Typescript", logo: getImage("Typescript.svg"), level: 70 },
             { name: "Python", logo: getImage("Python.svg"), level: 70 },
