@@ -5,41 +5,41 @@ import ExperienceCategory from "./ExperienceCategory"; // Import the new compone
 // --- Centralized and Structured Data ---
 const experienceData = [
   {
-    title: "💼 Internships",
+    title: "💼 Professional Experience",
     items: [
       {
-        company: "Digital Guruji",
-        role: "Full Stack Developer Lead Intern",
-        duration: "Jan 2025 - Feb 2025",
-        place: "Remote",
-        description: "Led full-stack development of 5+ scalable web apps using modern frontend and backend technologies.Mentored 3 interns, fostering technical growth and collaboration.",
-        link: "https://www.digitalguru.buzz/",
+        company: "Oracle",
+        role: "Project Intern",
+        duration: "Jan 2026 - Present",
+        place: "Hyderabad",
+        description: "Engineered a browser-based automation extension for Oracle C2M and MTM that reduced process execution time by 80%, streamlining billing operations across thousands of daily transactions. Customized Oracle C2M modules using 4GL and Groovy to support utility CRM workflows for electricity and water billing across a high-volume enterprise environment. Managed batch processing pipelines for billing cycles and customer data integrations, eliminating manual intervention and improving operational reliability at scale.",
+        link: "https://www.oracle.com/",
       },
       {
         company: "Digital Guruji",
-        role: "Frontend Developer Intern",
-        duration: "Sept 2024 - Dec 2024",
+        role: "Full Stack Developer",
+        duration: "Sep 2024 - Feb 2025",
         place: "Remote",
-        description: "Developed 6+ AI-powered websites using HTML, CSS, JavaScript, and TailwindCSS.Collaborated on UI/UX design to enhance user engagement and performance, achieving 40% faster load times.",
+        description: "Built and deployed 3+ full-stack React, Node.js, and MongoDB applications with end-to-end ownership from architecture to production. Integrated a Gemini API-powered conversational chatbot into production web applications, automating user interactions and reducing manual response overhead. Designed and optimized scalable REST APIs with efficient MongoDB queries, ensuring consistent performance and clean data flow across all application layers.",
         link: "https://www.digitalguru.buzz/",
       },
     ],
   },
   {
-    title: "🏆 Positions of Responsibility",
+    title: "🏆 Leadership & Responsibilities",
     items: [
       {
         company: "GDG On Campus CVR",
         role: "Web Core Team Member",
-        duration: "September 2024 - Present",
-        description: "Organize tech events, practice sessions, and hackathons as part of the core web team, fostering collaborative learning within Google's developer community.",
+        duration: "September 2024 - Dec 2025",
+        description: "Organize developer sessions, technical practice events, and hackathon initiatives as part of the web core team, helping peers learn modern web development through collaborative community programs.",
         link: "https://gdsccvr.vercel.app/",
       },
       {
         company: "LDC CVR",
         role: "Tech Team Member",
-        duration: "February 2025 - Present",
-        description: "Developed the LDC CVR website for event management and gallery creation, streamlining event organization and documentation processes for the campus community.",
+        duration: "February 2025 - Dec 2025",
+        description: "Built and maintained the LDC CVR website for event management and gallery workflows, improving how the campus community organizes events, publishes updates, and documents activities.",
         link: "https://cvrldc.vercel.app/",
       },
     ],

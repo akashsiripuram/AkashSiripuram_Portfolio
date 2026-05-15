@@ -9,8 +9,15 @@ const Hobbies = React.lazy(() => import("./Hobbies"));
 
 // --- Constants (no changes needed here) ---
 
-const introText = `Hi, I'm Akash Siripuram — a passionate MERN stack developer who thrives on transforming ideas into dynamic web applications. I believe great software isn't just about clean code; it's about creating meaningful digital experiences that solve real-world problems.
-With every project I undertake, I'm driven by the excitement of building something that matters. Whether it's developing an intuitive user interface that delights users or architecting a scalable backend that handles complex business logic, I approach each challenge with curiosity and determination. My journey in web development has been fueled by a constant desire to learn, adapt, and push the boundaries of what's possible with modern web technologies.`;
+const introText = `Hi, I'm Akash Siripuram, a Computer Science undergraduate, full-stack developer, and AI enthusiast who enjoys building reliable products from idea to deployment. I work across React, Node.js, Express, MongoDB, REST APIs, real-time systems, and AI integrations, with a strong interest in clean architecture, practical automation, and user-focused engineering.
+My projects include Gemini-powered learning tools, real-time civic platforms, Solana-based marketplaces, collaborative applications, and production-ready MERN systems. I am currently gaining enterprise exposure as a Project Intern, while continuing to focus on sharpening my individual skills in full-stack development, AI-powered applications, problem solving, and scalable software engineering.`;
+
+const profileHighlights = [
+  { value: "AI", label: "integrated Gemini-powered assistants, learning tools, and smart workflows" },
+  { value: "3+", label: "full-stack production applications built at Digital Guruji" },
+  { value: "4", label: "hackathon podium finishes across AI, blockchain, and collaboration products" },
+  { value: "9.15", label: "CGPA in B.Tech CSE at CVR College of Engineering" },
+];
 
 const technicalProfiles = [
   { platform: "leetcode", username: "Akash_siripuram", profileLink: "https://leetcode.com/Akash_siripuram", fallbackStats: { totalSolved: 466, rating: 1934 } },
@@ -19,7 +26,7 @@ const technicalProfiles = [
 ];
 
 const educationData = [
-  { title: "Graduation", College: "CVR College of Engineering", Course: "Bachelor's of Technology", Branch: "Computer Science and Engineering", Marks: <span>CGPA: 9.24 (Till 6<sup>th</sup> Sem)</span>, Year: "Duration: 2022 - 2026" },
+  { title: "Graduation", College: "CVR College of Engineering", Course: "Bachelor of Technology", Branch: "Computer Science and Engineering", Marks: "CGPA: 9.15/10", Year: "Duration: 2022 - 2026" },
   { title: "Senior Secondary", College: "Alphores Junior College", Course: "Physics, Chemistry and Mathematics", Branch: "Marks: 989/1000", Marks: "Percentage: 98.90 %", Year: "Duration: 2020 - 2022" },
   { title: "Secondary Education", College: "Siddartha High School", Branch: "CGPA : 10", Marks: "Percentage: 100%", Year: "Duration: 2019 - 2020" },
 ];
@@ -75,6 +82,19 @@ function About() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20" />
           <InteractiveText text={introText} className="relative z-10" />
         </div>
+      </motion.div>
+
+      <motion.div className="w-full max-w-7xl mb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" variants={itemVariants}>
+        {profileHighlights.map((highlight) => (
+          <motion.div
+            key={highlight.value}
+            variants={cardVariants}
+            className="bg-white/70 dark:bg-gray-800/70 border border-gray-300 dark:border-gray-700 rounded-2xl p-6 text-left shadow-lg"
+          >
+            <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{highlight.value}</p>
+            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">{highlight.label}</p>
+          </motion.div>
+        ))}
       </motion.div>
 
       <Suspense fallback={<FallbackLoader />}>

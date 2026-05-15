@@ -117,7 +117,7 @@ const TechnicalProfileCard = ({
     };
     fetchData();
     return () => { isMounted = false; };
-  }, [username, platform]);
+  }, [username, platform, platformData]);
 
   if (!platformData) return null;
 

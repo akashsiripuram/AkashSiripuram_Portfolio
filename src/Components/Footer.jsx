@@ -21,8 +21,12 @@ const Footer = () => {
     const navLinks = [
         { name: 'Home', href: '#Home' },
         { name: 'About', href: '#About' },
+        { name: 'Skills', href: '#Skills' },
+        { name: 'Experience', href: '#Experience' },
         { name: 'Projects', href: '#Projects' },
+        { name: 'Achievements', href: '#Achievements' },
         { name: 'Contact', href: '#Contact' },
+        { name: 'Resume', href: 'https://drive.google.com/file/d/1yrmltg0vh-q9jYjGWbGoOpViy2n7EY9t/view?usp=drive_link' },
     ];
 
     // Animation variants are kept for smooth entrance
@@ -59,7 +63,7 @@ const Footer = () => {
                     {/* Navigation Links (centered on mobile, middle on desktop) */}
                     <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                         {navLinks.map((link) => (
-                            <a key={link.name} href={link.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
+                            <a key={link.name} href={link.href} target={link.name === 'Resume' ? '_blank' : undefined} rel={link.name === 'Resume' ? 'noopener noreferrer' : undefined} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                                 {link.name}
                             </a>
                         ))}

@@ -2,21 +2,25 @@ import React from "react";
 import ProjectCard from "./ProjectCard";
 import { motion } from "framer-motion";
 
-// --- Project Data (No changes needed) ---
 const projects = [
   {
     title: "Bob Decentralized",
     description:
-      "A data labeling platform for data scientists and a polling platform for option seekers.",
+      "A Solana-based peer-to-peer data marketplace for secure data labeling, polling, and decentralized data exchange.",
     image: "/Project/bob.png",
-    tech: ["Nexjs", "Node", "Express", "Tailwind CSS", "MongoDB", "Solana SDK"],
+    tech: ["Next.js", "Node.js", "Express", "Tailwind CSS", "MongoDB", "Solana SDK"],
+    highlights: [
+      "Processed secure marketplace transactions at 0.000005 SOL per transaction.",
+      "Implemented millisecond-level Solana payment settlement under 36-hour hackathon constraints.",
+      "Placed 3rd among 60+ teams at Innovathon 2.0.",
+    ],
     sourceCode: "https://github.com/akashsiripuram/bob",
     link: "https://bob-v1.vercel.app/",
   },
   {
     title: "CivicSphere",
     description:
-      "CivicSphere is a MERN app that supports UN SDG 11 by enabling urban planning, issue reporting, resource sharing, and AI-powered emergency alerts.",
+      "A full-stack urban governance platform for real-time civic issue reporting, complaint tracking, admin communication, and smart city workflows.",
     image: "/Project/civicsphere.png",
     tech: [
       "React",
@@ -28,6 +32,13 @@ const projects = [
       "Node.js",
       "Gemini API",
       "OpenWeather API",
+      "WebSockets",
+      "Nodemailer",
+    ],
+    highlights: [
+      "Built end-to-end in a 24-hour hackathon with real-time complaint tracking.",
+      "Engineered WebSocket-based citizen-to-administrator chat and live status updates.",
+      "Integrated AI and weather-aware emergency alert workflows for civic response use cases.",
     ],
     sourceCode: "https://github.com/akashsiripuram/CivicSphere",
     link: "https://civic-sphere.vercel.app/",
@@ -35,7 +46,7 @@ const projects = [
   {
     title: "Eduwave",
     description:
-      "A collaborative learning platform to bridge the gap between teachers and students",
+      "An AI-powered MERN education platform connecting teachers and students through live learning, role-based access, quizzes, and analytics.",
     image: "/Project/eduwave.png",
     tech: [
       "React",
@@ -46,6 +57,12 @@ const projects = [
       "JWT",
       "Node.js",
       "ZegoCloud",
+      "Gemini API",
+    ],
+    highlights: [
+      "Built JWT authentication, role-based dashboards, live video conferencing, and quiz management.",
+      "Integrated Gemini-powered ChatAI, personalized learning paths, leaderboards, and performance analytics.",
+      "Won 1st place among 30+ teams at EPITOME'24 Hackathon at GRIET, Hyderabad.",
     ],
     sourceCode: "https://github.com/akashsiripuram/eduWave",
     link: "https://edu-wave.vercel.app/",
@@ -53,11 +70,28 @@ const projects = [
   {
     title: "Orbity",
     description:
-      "Orbity is a real-time chat application built with WebSockets. It supports multi-user messaging with a clean and responsive interface, making it ideal for interactive communication and collaborative environments.",
+      "A real-time chat application for responsive multi-user messaging and collaborative communication.",
     image: "/Project/orbity.png",
     tech: ["React", "Node.js", "Express", "WebSockets", "Tailwind CSS"],
+    highlights: [
+      "Built WebSocket-based real-time messaging with a clean, responsive interface.",
+      "Focused on fast interactive communication patterns for collaborative environments.",
+      "Complements hackathon experience building decentralized real-time chat systems.",
+    ],
     sourceCode: "https://github.com/akashsiripuram/Orbity",
     link: "https://orbity-teal.vercel.app/",
+  },
+  {
+    title: "Additional Builds",
+    description:
+      "A collection of focused products and hackathon prototypes across collaboration, productivity, and user-centered web applications.",
+    image: "/Project/civicsphere.png",
+    tech: ["MERN", "React", "Node.js", "MongoDB", "WebSockets", "AI Integrations"],
+    highlights: [
+      "Built Nexus, HerCycleDiary, Serenity, and other rapid prototypes noted in the resume.",
+      "Serenity placed 2nd among 50+ teams at HackSphere, BITS Pilani.",
+      "Projects reflect fast product execution across AI, collaboration, and full-stack workflows.",
+    ],
   },
 ];
 

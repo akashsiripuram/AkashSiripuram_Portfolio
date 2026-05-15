@@ -13,7 +13,7 @@ const cardVariants = {
   },
 };
 
-function ProjectCard({ title, description, image, tech, sourceCode, link }) {
+function ProjectCard({ title, description, image, tech, highlights = [], sourceCode, link }) {
   return (
     <motion.div
       variants={cardVariants}
@@ -59,6 +59,17 @@ function ProjectCard({ title, description, image, tech, sourceCode, link }) {
             </span>
           ))}
         </div>
+
+        {highlights.length > 0 && (
+          <ul className="mt-4 space-y-2 text-left text-sm text-gray-700 dark:text-gray-300">
+            {highlights.map((highlight) => (
+              <li key={highlight} className="flex gap-2 leading-relaxed">
+                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500 dark:bg-green-400" />
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="mt-auto pt-4 flex justify-end items-center gap-4">
           {sourceCode && (

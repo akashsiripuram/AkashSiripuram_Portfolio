@@ -17,7 +17,7 @@ const containerVariants = {
   },
 };
 
-const HobbyCard = React.memo(({ icon, text, index }) => {
+const HobbyCard = React.memo(({ icon, text }) => {
   return (
     <motion.div
       whileHover={{
@@ -48,12 +48,11 @@ const Hobbies = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8">
-        {hobbiesList.map((hobby, index) => (
+        {hobbiesList.map((hobby) => (
           <HobbyCard
             key={hobby.text}
             icon={hobby.icon}
             text={hobby.text}
-            index={index}
           />
         ))}
       </motion.div>

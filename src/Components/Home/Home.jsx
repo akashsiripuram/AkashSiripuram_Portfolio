@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import ContactForm from "../Contact/ContactFormCard";
-import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp, FaGithub, FaFacebook } from "react-icons/fa";
+import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp, FaGithub } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import Profile from "../../assets/Profile.jpg"
 
@@ -10,11 +10,14 @@ function Home() {
     const portfolioContent = {
         name: "Akash Siripuram",
         greeting: "Hello,",
-        resumeLink: "https://drive.google.com/file/d/1jvr3a5sWteMmabqXpHLiH1HiH2dQWLnA/view?usp=drive_link",
+        resumeLink: "https://drive.google.com/file/d/1yrmltg0vh-q9jYjGWbGoOpViy2n7EY9t/view?usp=drive_link",
         typewriterSequence: [
-            "I am Akash Siripuram.", 2000, "I am a MERN Stack Developer.", 2000, "I build amazing things.", 2000,
+            "I am Akash Siripuram.", 2000,
+            "I build AI-integrated full-stack systems.", 2000,
+            "I automate enterprise workflows.", 2000,
+            "I ship scalable MERN products.", 2000,
         ],
-        description: "Welcome to my portfolio! I'm thrilled to have you here. Whether you're here to learn more about my work, collaborate, or get inspired, let's connect and build something incredible together!",
+        description: "Computer Science undergraduate and full-stack developer focused on AI-powered web products, scalable MERN applications, browser-extension workflows, and practical automation. I build production-ready systems with clean APIs, reliable data flows, real-time features, and thoughtful user experiences across learning platforms, civic-tech tools, decentralized apps, and collaborative products.",
         buttons: { sendMessage: "📧 Send Message", resume: "📄 Resume" },
         socialIcons: [
             { name: "LinkedIn", icon: FaLinkedinIn, color: "#0A66C2", url: "https://www.linkedin.com/in/siripuramakash" },
@@ -33,40 +36,6 @@ function Home() {
     const itemVariants = { hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 12 } } };
     const buttonVariants = { hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }, hover: { scale: 1.1, boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)", transition: { type: "spring", stiffness: 400, damping: 10 } }, tap: { scale: 0.95 } };
 
-    const sendEmail = (e) => {
-            e.preventDefault();
-    
-            if (!validateForm()) return;
-    
-            setIsLoading(true);
-    
-            emailjs
-                .send(
-                    import.meta.env.VITE_EMAILJS_SERVICE_ID,
-                    import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-                    {
-                        name: formData.name,
-                        email: formData.email,
-                        message: formData.message,
-                    },
-                    import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-                )
-                .then(() => {
-                    setIsLoading(false);
-                    setFormData({ name: "", email: "", message: "" });
-                    setShowSuccess(true);
-                    onClose();
-                    setTimeout(() => {
-                        setShowSuccess(false);
-                    }, 4000);
-                })
-                .catch((error) => {
-                    console.error("Email send error:", error);
-                    setErrors({ submit: "Failed to send email. Please try again later." });
-                    setIsLoading(false);
-                });
-        };
-        
     return (
         <motion.div
             id="Home"

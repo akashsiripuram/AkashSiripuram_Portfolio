@@ -50,7 +50,13 @@ const SkillCard = ({ skill, pathColor = "var(--skill-path-color-default)" }) => 
                         transition={{ duration: 0.2 }}
                         className="flex flex-col items-center justify-center text-center"
                     >
-                        <img src={skill.logo} alt={skill.name} className="w-14 h-14 object-contain" />
+                        {skill.logo ? (
+                            <img src={skill.logo} alt={skill.name} className="w-14 h-14 object-contain" />
+                        ) : (
+                            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 text-white flex items-center justify-center text-sm font-bold">
+                                {skill.short || skill.name.slice(0, 2).toUpperCase()}
+                            </div>
+                        )}
                         <p className="text-gray-900 dark:text-white text-sm font-semibold mt-2">{skill.name}</p>
                     </motion.div>
                 ) : (

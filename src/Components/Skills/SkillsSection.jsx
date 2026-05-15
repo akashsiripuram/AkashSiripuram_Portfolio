@@ -13,6 +13,8 @@ const skillsData = [
             { name: "JavaScript", logo: getImage("JavaScript.svg"), level: 80 },
             { name: "Typescript", logo: getImage("Typescript.svg"), level: 70 },
             { name: "Python", logo: getImage("Python.svg"), level: 70 },
+            { name: "4GL", short: "4GL", level: 70 },
+            { name: "Groovy", short: "GV", level: 70 },
         ],
     },
     {
@@ -21,15 +23,34 @@ const skillsData = [
             { name: "HTML5", logo: getImage("HTML5.svg"), level: 95 },
             { name: "CSS3", logo: getImage("CSS3.svg"), level: 80 },
             { name: "React", logo: getImage("React.svg"), level: 80 },
+            { name: "Next.js", short: "NX", level: 78 },
             { name: "Tailwind CSS", logo: getImage("Tailwind_CSS.svg"), level: 85 },
             { name: "Node.js", logo: getImage("Node_js.svg"), level: 85 },
             { name: "Express.js", logo: getImage("Express.svg"), level: 85 },
+            { name: "Redux", short: "RX", level: 75 },
+            { name: "Socket.io", short: "SO", level: 75 },
+            { name: "REST APIs", short: "API", level: 85 },
+            { name: "Bootstrap", short: "BS", level: 75 },
+            { name: "ShadCN", short: "UI", level: 70 },
+        ],
+    },
+    {
+        title: "AI & Machine Learning",
+        skills: [
+            { name: "GenAI", short: "AI", level: 78 },
+            { name: "LLMs", short: "LLM", level: 75 },
+            { name: "RAG", short: "RAG", level: 70 },
+            { name: "LangChain", short: "LC", level: 70 },
+            { name: "PyTorch", short: "PT", level: 65 },
+            { name: "Gemini API", short: "GM", level: 80 },
         ],
     },
     {
         title: "Databases",
         skills: [
             { name: "MongoDB", logo: getImage("MongoDB.svg"), level: 80 },
+            { name: "PostgreSQL", short: "PG", level: 70 },
+            { name: "MySQL", logo: getImage("MySQL.svg"), level: 75 },
         ],
     },
     {
@@ -39,6 +60,9 @@ const skillsData = [
             { name: "GitHub", logo: getImage("GitHub.svg"), level: 80 },
             { name: "VS Code", logo: getImage("VScode.svg"), level: 95 },
             { name: "Postman", logo: getImage("Postman.svg"), level: 80 },
+            { name: "Vercel", short: "VE", level: 85 },
+            { name: "Oracle OCI", short: "OCI", level: 70 },
+            { name: "Solana SDK", short: "SOL", level: 70 },
         ],
     },
     {
@@ -90,7 +114,7 @@ function Skills() {
 
                 {/* Introductory Text */}
                 <motion.p variants={itemVariants} className="max-w-3xl text-gray-700 dark:text-gray-300 mb-8 text-base sm:text-lg leading-relaxed">
-                    I have a strong foundation in Data Structures, Algorithms, and Object-Oriented Programming, complemented by a versatile technical and interpersonal skill set.
+                    I have a strong foundation in Data Structures, Algorithms, and Object-Oriented Programming, with hands-on experience across MERN development, Oracle C2M automation, AI/LLM integrations, real-time systems, and cloud-ready deployment workflows.
                 </motion.p>
                 <motion.div variants={itemVariants} className="w-full max-w-lg p-3 mb-12 text-sm text-center text-cyan-800 dark:text-cyan-200 bg-cyan-100/50 dark:bg-cyan-900/30 border border-cyan-400/30 rounded-lg flex items-center justify-center gap-3 shadow-inner">
                     <span>💡</span>

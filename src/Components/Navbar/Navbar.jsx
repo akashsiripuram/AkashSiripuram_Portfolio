@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-scroll";
 import {
     RiCloseLine,
@@ -8,6 +8,7 @@ import {
     RiLightbulbLine,
     RiBriefcaseLine,
     RiStackLine,
+    RiAwardLine,
     RiMailLine,
     RiSunLine,
     RiMoonLine
@@ -23,6 +24,7 @@ const menuItems = [
     { name: "Skills", icon: <RiLightbulbLine size={18} /> },
     { name: "Experience", icon: <RiBriefcaseLine size={18} /> },
     { name: "Projects", icon: <RiStackLine size={18} /> },
+    { name: "Achievements", icon: <RiAwardLine size={18} /> },
     { name: "Contact", icon: <RiMailLine size={18} /> },
 ];
 
@@ -31,20 +33,8 @@ const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const { darkMode, toggleDarkMode } = useTheme();
     const [activeSection, setActiveSection] = useState("Home");
-    const [scrolled, setScrolled] = useState(false);
-
-
     // Calculate a dynamic offset based on screen size
     const scrollOffset = window.innerWidth < 768 ? -50 : -60;
-
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
 
     return (
@@ -77,7 +67,7 @@ const Navbar = () => {
 
                             {/* Desktop Menu - Compact Pills */}
                             <motion.div
-                                className="hidden lg:flex items-center gap-2 mx-8"
+                                className="hidden lg:flex items-center gap-1 xl:gap-2 mx-4 xl:mx-8"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.3 }}
@@ -92,7 +82,7 @@ const Navbar = () => {
                                             offset={scrollOffset} // <-- FIX APPLIED HERE
                                             onSetActive={() => setActiveSection(item.name)}
                                             className={`
-                                                relative px-4 py-2 rounded-full text-lg font-medium cursor-pointer
+                                                relative px-3 xl:px-4 py-2 rounded-full text-sm xl:text-base font-medium cursor-pointer
                                                 transition-all duration-300 group overflow-hidden
                                                 ${activeSection === item.name
                                                     ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
