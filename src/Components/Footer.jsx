@@ -1,107 +1,106 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import {
-    FaGithub,
-    FaLinkedin,
-    FaInstagram,
-    FaTwitter,
-    FaFacebook,
-} from 'react-icons/fa';
-import { RiHeartFill } from '@remixicon/react';
+import { Link } from 'react-scroll';
+import { FiGithub, FiLinkedin, FiMail, FiTerminal, FiArrowUp } from 'react-icons/fi';
+import { FaWhatsapp, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
-    // Data remains the same
     const socialLinks = [
-        { name: 'GitHub', icon: FaGithub, url:"https://github.com/akashsiripuram/", color: 'hover:text-gray-400 dark:hover:text-white' },
-        { name: 'LinkedIn', icon: FaLinkedin, url: 'https://www.linkedin.com/in/siripuramakash', color: 'hover:text-blue-500' },
-        { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/akash_siripuram_19/', color: 'hover:text-pink-500' },
-        { name: 'Twitter', icon: FaTwitter, url: 'https://x.com/siripuramakash2', color: 'hover:text-sky-400' },
+        { name: 'GitHub', icon: FiGithub, url: 'https://github.com/akashsiripuram' },
+        { name: 'LinkedIn', icon: FiLinkedin, url: 'https://www.linkedin.com/in/siripuramakash' },
+        { name: 'LeetCode', icon: FiTerminal, url: 'https://leetcode.com/u/Akash_siripuram/' },
+        { name: 'Twitter', icon: FaTwitter, url: 'https://x.com/siripuramakash2' },
+        { name: 'WhatsApp', icon: FaWhatsapp, url: 'https://wa.me/+919951077641' },
     ];
 
     const navLinks = [
-        { name: 'Home', href: '#Home' },
-        { name: 'About', href: '#About' },
-        { name: 'Skills', href: '#Skills' },
-        { name: 'Experience', href: '#Experience' },
-        { name: 'Projects', href: '#Projects' },
-        { name: 'Achievements', href: '#Achievements' },
-        { name: 'Contact', href: '#Contact' },
-        { name: 'Resume', href: 'https://drive.google.com/file/d/1yrmltg0vh-q9jYjGWbGoOpViy2n7EY9t/view?usp=drive_link' },
+        { name: 'About', to: 'About' },
+        { name: 'Experience', to: 'Experience' },
+        { name: 'Projects', to: 'Projects' },
+        { name: 'Stack', to: 'Skills' },
+        { name: 'Honors', to: 'Achievements' },
+        { name: 'Contact', to: 'Contact' },
     ];
 
-    // Animation variants are kept for smooth entrance
-    const footerVariants = {
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut', staggerChildren: 0.1 } },
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 15 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     return (
-        <motion.footer
-            variants={footerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            // --- UPDATED: Background removed, padding reduced for less height ---
-            className="w-full border-t border-gray-200/50 dark:border-white/10 text-gray-800 dark:text-white py-6 px-6"
-        >
-            <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
+        <footer className="w-full border-t border-slate-200/80 dark:border-slate-800 bg-white/40 dark:bg-slate-950/40 backdrop-blur-md text-slate-600 dark:text-slate-400 py-10 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto flex flex-col gap-8">
                 
-                {/* --- UPDATED: Main content row with a more professional layout --- */}
-                <div className="w-full flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Name/Logo */}
-                    <motion.div variants={itemVariants}>
-                        <a href="#Home" className="text-lg font-bold text-gray-800 dark:text-white">
-                            Akash Siripuram
-                        </a>
-                    </motion.div>
+                {/* Main Row */}
+                <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
                     
-                    {/* Navigation Links (centered on mobile, middle on desktop) */}
-                    <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                        {navLinks.map((link) => (
-                            <a key={link.name} href={link.href} target={link.name === 'Resume' ? '_blank' : undefined} rel={link.name === 'Resume' ? 'noopener noreferrer' : undefined} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
-                                {link.name}
-                            </a>
-                        ))}
-                    </motion.div>
+                    {/* Brand / Identity */}
+                    <div className="flex flex-col items-center md:items-start">
+                        <div className="flex items-center gap-2">
+                            <span className="font-mono font-bold text-slate-900 dark:text-white text-base">
+                                Akash Siripuram
+                            </span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        </div>
+                        <span className="text-xs text-slate-500 font-mono mt-0.5">
+                            Software Developer @ Oracle • AI Systems Engineer
+                        </span>
+                    </div>
 
-                    {/* Social Icons */}
-                    <motion.div variants={itemVariants} className="flex gap-5 text-xl">
-                        {socialLinks.map((social) => (
-                            <motion.a
-                                key={social.name}
-                                href={social.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                aria-label={social.name}
-                                className={`text-gray-500 dark:text-gray-400 transition-colors ${social.color}`}
-                                whileHover={{ y: -3, scale: 1.15 }}
-                                transition={{ type: 'spring', stiffness: 300 }}
+                    {/* Quick Nav Links */}
+                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs font-medium">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                to={link.to}
+                                smooth={true}
+                                duration={500}
+                                offset={-70}
+                                className="cursor-pointer text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
                             >
-                                <social.icon />
-                            </motion.a>
+                                {link.name}
+                            </Link>
                         ))}
-                    </motion.div>
+                    </div>
+
+                    {/* Socials & Scroll to Top */}
+                    <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2">
+                            {socialLinks.map((s) => (
+                                <a
+                                    key={s.name}
+                                    href={s.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={s.name}
+                                    className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                                >
+                                    <s.icon size={15} />
+                                </a>
+                            ))}
+                        </div>
+
+                        <button
+                            onClick={scrollToTop}
+                            aria-label="Scroll to top"
+                            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ml-2"
+                        >
+                            <FiArrowUp size={15} />
+                        </button>
+                    </div>
+
                 </div>
 
-                {/* --- UPDATED: Divider and Copyright section for a cleaner finish --- */}
-                <motion.div variants={itemVariants} className="w-full max-w-lg h-px bg-gray-300/50 dark:bg-white/10" />
-                
-                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-2 text-xs text-gray-500 dark:text-gray-500">
-                    <span>© {new Date().getFullYear()} Akash Siripuram. All rights reserved.</span>
-                    <span className="hidden sm:inline">|</span>
-                    <span className="flex items-center gap-1.5">
-                        Made with <RiHeartFill className="text-red-500" /> in India
+                {/* Bottom Meta */}
+                <div className="pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-slate-500">
+                    <span>© {new Date().getFullYear()} Akash Siripuram. Engineered with React & Tailwind.</span>
+                    <span className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Available for select engineering opportunities</span>
                     </span>
-                </motion.div>
+                </div>
 
             </div>
-        </motion.footer>
+        </footer>
     );
 };
 
-export default Footer;
+export default React.memo(Footer);

@@ -1,158 +1,336 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { Link } from "react-scroll";
 import { TypeAnimation } from "react-type-animation";
+import { 
+    FiArrowRight, 
+    FiFileText, 
+    FiGithub, 
+    FiLinkedin, 
+    FiMail, 
+    FiTerminal, 
+    FiCpu, 
+    FiCheckCircle,
+    FiLayers,
+    FiExternalLink
+} from "react-icons/fi";
+import { FaWhatsapp, FaTwitter } from "react-icons/fa";
 import ContactForm from "../Contact/ContactFormCard";
-import { FaLinkedinIn, FaInstagram, FaTwitter, FaWhatsapp, FaGithub } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
-import Profile from "../../assets/Profile.jpg"
 
-function Home() {
-    const portfolioContent = {
-        name: "Akash Siripuram",
-        greeting: "Hello,",
-        resumeLink: "https://drive.google.com/file/d/1yrmltg0vh-q9jYjGWbGoOpViy2n7EY9t/view?usp=drive_link",
-        typewriterSequence: [
-            "I am Akash Siripuram.", 2000,
-            "I build AI-integrated full-stack systems.", 2000,
-            "I automate enterprise workflows.", 2000,
-            "I ship scalable MERN products.", 2000,
-        ],
-        description: "Computer Science undergraduate and full-stack developer focused on AI-powered web products, scalable MERN applications, browser-extension workflows, and practical automation. I build production-ready systems with clean APIs, reliable data flows, real-time features, and thoughtful user experiences across learning platforms, civic-tech tools, decentralized apps, and collaborative products.",
-        buttons: { sendMessage: "📧 Send Message", resume: "📄 Resume" },
-        socialIcons: [
-            { name: "LinkedIn", icon: FaLinkedinIn, color: "#0A66C2", url: "https://www.linkedin.com/in/siripuramakash" },
-            { name: "GitHub", icon: FaGithub, color: "#181717", url: "https://github.com/akashsiripuram/" },
-            { name: "Instagram", icon: FaInstagram, color: "#E1306C", url: "https://www.instagram.com/akash_siripuram_19/" },
-            { name: "Twitter", icon: FaTwitter, color: "#1DA1F2", url: "https://x.com/siripuramakash2" },
-            { name: "WhatsApp", icon: FaWhatsapp, color: "#25D366", url: "https://wa.me/+919951077641" },
-            { name: "Email", icon: HiOutlineMail, color: "#FACC15", url: "mailto:siripuramakash2005@gmail.com" }
-        ]
-    };
-
+const Home = () => {
     const [showForm, setShowForm] = useState(false);
-    const [hoveredIcon, setHoveredIcon] = useState(null);
+    const [telemetryTab, setTelemetryTab] = useState("telemetry");
 
-    const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } } };
-    const itemVariants = { hidden: { y: 30, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 12 } } };
-    const buttonVariants = { hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 15 } }, hover: { scale: 1.1, boxShadow: "0 10px 30px rgba(34, 197, 94, 0.3)", transition: { type: "spring", stiffness: 400, damping: 10 } }, tap: { scale: 0.95 } };
+    const heroMetrics = [
+        { label: "Role", value: "SWE @ Oracle", highlight: "C2M & Groovy" },
+        { label: "B.Tech CGPA", value: "9.18 / 10", highlight: "CVR College" },
+        { label: "Competitive Stats", value: "1100+ Solved", highlight: "LC 1700 | CF 1136" },
+        { label: "Hackathons", value: "3+ Podiums", highlight: "AI & Full-Stack" },
+    ];
+
+    const socialLinks = [
+        { name: "GitHub", icon: FiGithub, href: "https://github.com/akashsiripuram" },
+        { name: "LinkedIn", icon: FiLinkedin, href: "https://www.linkedin.com/in/siripuramakash" },
+        { name: "LeetCode", icon: FiTerminal, href: "https://leetcode.com/u/Akash_siripuram/" },
+        { name: "Twitter", icon: FaTwitter, href: "https://x.com/siripuramakash2" },
+        { name: "WhatsApp", icon: FaWhatsapp, href: "https://wa.me/+919951077641" },
+        { name: "Email", icon: FiMail, href: "mailto:siripuramakash2005@gmail.com" },
+    ];
 
     return (
-        <motion.div
+        <section
             id="Home"
-            className="text-gray-900 dark:text-white flex w-full min-h-screen flex-col lg:flex-row justify-center items-center lg:justify-between mt-6 md:mt-0 p-4 sm:p-6 md:p-10 lg:p-20 relative transition-all duration-500"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+            className="min-h-screen w-full flex flex-col justify-center items-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
         >
-            {/* LEFT HALF: Text Content */}
-            <div className="w-full lg:w-1/2 text-center lg:text-left lg:pt-10 px-2 sm:px-4">
-                <motion.div variants={itemVariants}>
-                    <motion.h1 className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tighter text-gray-900 dark:text-white" initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} viewport={{ once: true}} transition={{ duration: 0.8, ease: "easeOut" }}>
-                        <motion.span className="inline-block" animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }} transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, ease: "easeInOut" }}>
-                            👋
-                        </motion.span>
-                        {" "}{portfolioContent.greeting}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center w-full">
+                
+                {/* LEFT COLUMN: Engineering Introduction */}
+                <div className="lg:col-span-7 flex flex-col items-start text-left">
+                    
+                    {/* Live Status Badge */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 shadow-xs mb-6"
+                    >
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </span>
+                        <span className="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
+                            Software Developer @ Oracle
+                        </span>
+                        <span className="text-slate-300 dark:text-slate-600">|</span>
+                        <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                            Hyderabad, India
+                        </span>
+                    </motion.div>
+
+                    {/* Main Headline */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1] mb-4"
+                    >
+                        Architecting{" "}
+                        <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 dark:from-emerald-400 dark:via-teal-300 dark:to-cyan-400 bg-clip-text text-transparent">
+                            Scalable Systems
+                        </span>{" "}
+                        & AI Workflows.
                     </motion.h1>
-                </motion.div>
-                <motion.div variants={itemVariants} className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mt-2 sm:mt-4">
-                    <span className="block text-green-600 dark:text-green-400">
-                        <TypeAnimation sequence={portfolioContent.typewriterSequence} wrapper="span" speed={50} repeat={Infinity} deletionSpeed={30} />
-                    </span>
-                </motion.div>
-                <motion.p variants={itemVariants} className="text-justify w-full text-xs sm:text-sm md:text-lg lg:text-xl tracking-tight mt-4 sm:mt-6 leading-relaxed text-gray-800 dark:text-gray-300">
-                    {portfolioContent.description}
-                </motion.p>
-                <motion.div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-6 sm:mt-10 justify-center lg:justify-start" variants={itemVariants}>
-                    <motion.button onClick={() => setShowForm(true)} className="group relative px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-xs sm:text-sm md:text-lg font-semibold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl shadow-lg overflow-hidden" variants={buttonVariants} whileHover="hover" whileTap="tap">
-                        <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                        <span className="relative z-10 flex items-center gap-2 justify-center">{portfolioContent.buttons.sendMessage}</span>
-                    </motion.button>
-                    <motion.a href={portfolioContent.resumeLink} target="_blank" rel="noopener noreferrer" className="group relative px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 text-xs sm:text-sm md:text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl shadow-lg overflow-hidden text-center" variants={buttonVariants} whileHover="hover" whileTap="tap">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                        <span className="relative z-10 flex items-center gap-2 justify-center">{portfolioContent.buttons.resume}</span>
-                    </motion.a>
-                </motion.div>
-                <ContactForm isOpen={showForm} onClose={() => setShowForm(false)} />
-            </div>
 
-            {/* RIGHT HALF: Image and Social Icons */}
-            <div className="w-full lg:w-1/2 flex justify-center items-center relative h-[300px] sm:h-[400px] md:h-[500px] mt-8 lg:mt-0">
-                <motion.div className="absolute w-60 h-60 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-full border-2 border-green-500/50 dark:border-green-400/30" animate={{ scale: [1, 1.02, 1], rotate: [0, 360] }} transition={{ scale: { duration: 6, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 40, repeat: Infinity, ease: "linear" } }} />
-                <motion.img src={Profile} alt="Akash Siripuram" 
-                className="w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full object-cover shadow-2xl border-4 border-green-500/50 dark:border-green-400/30 relative z-10" 
-                initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} viewport={{ once: true}} 
-                transition={{ delay: 1, type: "spring", stiffness: 200, damping: 20 }} 
-                loading='lazy'
-                />
+                    {/* Dynamic Role Subtitle */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="h-10 text-lg sm:text-xl font-mono font-medium text-slate-600 dark:text-slate-300 flex items-center mb-6"
+                    >
+                        <span className="text-emerald-600 dark:text-emerald-400 mr-2 font-bold">&gt;</span>
+                        <TypeAnimation
+                            sequence={[
+                                "Building LangGraph multi-agent automations.", 2200,
+                                "Developing Oracle C2M billing workflows in Groovy/4GL.", 2400,
+                                "Shipping high-performance MERN & Next.js platforms.", 2200,
+                                "Architecting production-ready REST & WebSocket APIs.", 2200,
+                            ]}
+                            wrapper="span"
+                            speed={55}
+                            repeat={Infinity}
+                            cursor={true}
+                        />
+                    </motion.div>
 
-                {portfolioContent.socialIcons.map((item, i) => {
-                    const radius = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 120 : window.innerWidth < 768 ? 150 : 180) : 180;
-                    const angle = (i / portfolioContent.socialIcons.length) * 2 * Math.PI;
-                    const x = radius * Math.cos(angle);
-                    const y = radius * Math.sin(angle);
-                    const iconSize = typeof window !== 'undefined' ? (window.innerWidth < 640 ? 48 : window.innerWidth < 768 ? 56 : 64) : 64;
+                    {/* Narrative Description */}
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mb-8"
+                    >
+                        I'm Akash Siripuram, a Software Developer at Oracle and competitive programmer focused on building production-ready web platforms, LLM/RAG agentic workflows, and enterprise automation pipelines. From automating high-volume utility billing to shipping hackathon-winning AI and full-stack software products.
+                    </motion.p>
 
-                    return (
-                        <motion.div key={item.name} className="absolute" style={{ left: '50%', top: '50%', transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))` }} onMouseEnter={() => setHoveredIcon(i)} onMouseLeave={() => setHoveredIcon(null)}>
-                            <motion.a 
-                                href={item.url} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="flex items-center justify-center rounded-full text-white border-2 border-white/40 dark:border-white/20 backdrop-blur-sm relative overflow-hidden shadow-xl cursor-pointer" 
-                                style={{ width: iconSize, height: iconSize, background: `linear-gradient(135deg, ${item.color}, ${item.color}DD)` }}
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: [1, 1.05, 1], rotate: [0, 360], y: [0, -8, 0], x: [0, Math.sin(i * 2) * 3, 0] }}
-                                transition={{ delay: 1.5 + i * 0.2, scale: { duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut" }, rotate: { duration: 30 + i * 5, repeat: Infinity, ease: "linear" }, y: { duration: 2.5 + i * 0.3, repeat: Infinity, ease: "easeInOut" }, x: { duration: 4 + i * 0.4, repeat: Infinity, ease: "easeInOut" } }}
-                                whileHover={{ scale: 1.2, y: -10, transition: { type: "spring", stiffness: 300, damping: 10 }}} 
-                                whileTap={{ scale: 0.9, transition: { duration: 0.1, delay: 0 } }} 
-                                viewport={{ once: true}}
+                    {/* Action Buttons */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="flex flex-wrap items-center gap-3.5 w-full sm:w-auto mb-8"
+                    >
+                        <Link
+                            to="Projects"
+                            smooth={true}
+                            duration={500}
+                            offset={-70}
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm text-white bg-slate-900 hover:bg-slate-800 dark:bg-emerald-500 dark:hover:bg-emerald-400 dark:text-slate-950 shadow-md hover:shadow-lg transition-all duration-200 cursor-pointer"
+                        >
+                            <span>Explore Projects</span>
+                            <FiArrowRight className="text-base" />
+                        </Link>
+
+                        <Link
+                            to="Projects"
+                            smooth={true}
+                            duration={500}
+                            offset={-70}
+                            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700/70 border border-slate-200 dark:border-slate-700/60 transition-all duration-200 cursor-pointer"
+                        >
+                            <FiCpu className="text-cyan-500" />
+                            <span>AI Architecture</span>
+                        </Link>
+
+                        <button
+                            onClick={() => setShowForm(true)}
+                            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 transition-all duration-200"
+                        >
+                            <FiMail className="text-emerald-500" />
+                            <span>Contact</span>
+                        </button>
+                    </motion.div>
+
+                    {/* Social Links Dock */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="flex items-center gap-2 text-slate-500 dark:text-slate-400"
+                    >
+                        <span className="font-mono text-xs uppercase tracking-wider mr-2 font-semibold text-slate-400 dark:text-slate-500">
+                            Connect:
+                        </span>
+                        {socialLinks.map((item) => (
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={item.name}
+                                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white border border-slate-200/60 dark:border-slate-700/40 transition-colors"
                             >
-                                <AnimatePresence>
-                                    {hoveredIcon === i && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: -5, scale: 0.9 }}
-                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                            exit={{ opacity: 0, y: -5, scale: 0.9 }}
-                                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                                            className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 px-3 py-1.5 text-xs font-semibold text-white rounded-lg shadow-lg whitespace-nowrap"
-                                            style={{ background: `linear-gradient(135deg, ${item.color}EE, ${item.color}CC)`, boxShadow: `0 6px 20px ${item.color}50` }}
-                                        >
-                                            {item.name}
-                                            <div className="absolute left-1/2 -translate-x-1/2 bottom-[-4px] w-0 h-0 border-x-4 border-x-transparent border-t-4" style={{ borderTopColor: `${item.color}EE` }}></div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                <item.icon size={16} />
+                            </a>
+                        ))}
+                    </motion.div>
+                </div>
 
-                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/25 via-transparent to-transparent"></div>
-                                <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 2 + i * 0.2, repeat: Infinity, ease: "easeInOut" }}>
-                                    <item.icon size={iconSize * 0.4} className="relative z-10" />
-                                </motion.div>
-                                <AnimatePresence>
-                                    {hoveredIcon === i && (
-                                        <>
-                                            {[...Array(8)].map((_, index) => (
-                                                <motion.div 
-                                                    key={index} 
-                                                    className="absolute w-1 h-1 rounded-full pointer-events-none" 
-                                                    style={{ backgroundColor: item.color, left: `${50 + Math.cos(index * 45 * Math.PI / 180) * 35}%`, top: `${50 + Math.sin(index * 45 * Math.PI / 180) * 35}%` }}
-                                                    initial={{ scale: 0, opacity: 0 }}
-                                                    animate={{ scale: [0, 1.5, 0], opacity: [0, 1, 0], x: [0, Math.cos(index * 45 * Math.PI / 180) * 25], y: [0, Math.sin(index * 45 * Math.PI / 180) * 25] }}
-                                                    exit={{ scale: 0, opacity: 0 }}
-                                                    transition={{ duration: 0.8, delay: index * 0.05, ease: "easeOut" }}
-                                                />
-                                            ))}
-                                        </>
-                                    )}
-                                </AnimatePresence>
-                            </motion.a>
-                        </motion.div>
-                    );
-                })}
+                {/* RIGHT COLUMN: Interactive Engineering HUD Terminal */}
+                <div className="lg:col-span-5 w-full">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        className="relative rounded-2xl bg-slate-900 dark:bg-[#0d1424] border border-slate-800 text-slate-200 p-5 sm:p-6 shadow-2xl overflow-hidden font-mono text-xs"
+                    >
+                        {/* Terminal Header */}
+                        <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                                <div className="w-3 h-3 rounded-full bg-amber-500/80" />
+                                <div className="w-3 h-3 rounded-full bg-emerald-500/80" />
+                                <span className="ml-2 text-slate-400 text-[11px]">akash@oracle-dev: ~</span>
+                            </div>
+                            <div className="flex items-center gap-1 bg-slate-800/80 p-0.5 rounded-md text-[10px]">
+                                <button
+                                    onClick={() => setTelemetryTab("telemetry")}
+                                    className={`px-2 py-0.5 rounded ${telemetryTab === "telemetry" ? "bg-slate-700 text-white font-semibold" : "text-slate-400"}`}
+                                >
+                                    Signals
+                                </button>
+                                <button
+                                    onClick={() => setTelemetryTab("stack")}
+                                    className={`px-2 py-0.5 rounded ${telemetryTab === "stack" ? "bg-slate-700 text-white font-semibold" : "text-slate-400"}`}
+                                >
+                                    Stack
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Terminal Body */}
+                        {telemetryTab === "telemetry" ? (
+                            <div className="space-y-4 text-left">
+                                {/* System Status */}
+                                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                                    <div className="flex items-center justify-between text-slate-400 mb-2">
+                                        <span className="flex items-center gap-1.5 text-emerald-400 font-semibold">
+                                            <FiCheckCircle className="text-emerald-400" /> SYSTEM ONLINE
+                                        </span>
+                                        <span className="text-[10px] text-slate-500">v2.4.0-prod</span>
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-2 text-[11px]">
+                                        <div className="bg-slate-900/80 p-2 rounded-lg">
+                                            <span className="text-slate-500 block">CURRENT ORG</span>
+                                            <span className="font-semibold text-white">Oracle (C2M / MTM)</span>
+                                        </div>
+                                        <div className="bg-slate-900/80 p-2 rounded-lg">
+                                            <span className="text-slate-500 block">SPECIALIZATION</span>
+                                            <span className="font-semibold text-white">AI Agents & Workflows</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Coding Telemetry Preview */}
+                                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+                                    <div className="flex justify-between items-center text-slate-400">
+                                        <span>ALGORITHMIC TELEMETRY</span>
+                                        <span className="text-[10px] text-emerald-400 font-mono">1100+ Solved</span>
+                                    </div>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        <div className="bg-slate-900/80 p-2 rounded-lg text-center">
+                                            <span className="text-[10px] text-amber-400 font-bold block">LeetCode</span>
+                                            <span className="text-white font-bold text-sm">1700</span>
+                                            <span className="text-[9px] text-slate-500 block">Contest Rating</span>
+                                        </div>
+                                        <div className="bg-slate-900/80 p-2 rounded-lg text-center">
+                                            <span className="text-[10px] text-indigo-400 font-bold block">Codeforces</span>
+                                            <span className="text-white font-bold text-sm">1136</span>
+                                            <span className="text-[9px] text-slate-500 block">Rating</span>
+                                        </div>
+                                        <div className="bg-slate-900/80 p-2 rounded-lg text-center">
+                                            <span className="text-[10px] text-emerald-400 font-bold block">CodeChef</span>
+                                            <span className="text-white font-bold text-sm">1469</span>
+                                            <span className="text-[9px] text-slate-500 block">Global Rating</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Quick Highlights */}
+                                <div className="grid grid-cols-2 gap-2 text-[11px]">
+                                    <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                                        <span className="text-slate-500 text-[10px] block">ACADEMIC HONORS</span>
+                                        <span className="text-white font-bold text-xs">9.18 / 10 CGPA</span>
+                                        <span className="text-[10px] text-slate-400 block">CVR B.Tech CSE</span>
+                                    </div>
+                                    <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                                        <span className="text-slate-500 text-[10px] block">HACKATHONS</span>
+                                        <span className="text-white font-bold text-xs">1st @ EPITOME'24</span>
+                                        <span className="text-[10px] text-slate-400 block">3rd @ Innovathon 2.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="space-y-3 text-left">
+                                <span className="text-slate-400 text-[11px] block">ENGINEERING STACK FOOTPRINT:</span>
+                                <div className="space-y-2">
+                                    <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                                        <span className="text-cyan-400 font-bold text-xs block">AI / AGENTIC</span>
+                                        <p className="text-slate-300 text-[11px] mt-1">LangGraph, LangChain, Gemini API, RAG, PyTorch</p>
+                                    </div>
+                                    <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                                        <span className="text-emerald-400 font-bold text-xs block">ENTERPRISE & BACKEND</span>
+                                        <p className="text-slate-300 text-[11px] mt-1">Oracle C2M, Groovy, 4GL, Node.js, FastAPI, Express</p>
+                                    </div>
+                                    <div className="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800/80">
+                                        <span className="text-indigo-400 font-bold text-xs block">FRONTEND & SOLANA</span>
+                                        <p className="text-slate-300 text-[11px] mt-1">React, Next.js, Redux, Tailwind CSS, Solana SDK</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Terminal Footer */}
+                        <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-500">
+                            <span>env: production</span>
+                            <span className="text-emerald-400 flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> latency: 24ms
+                            </span>
+                        </div>
+                    </motion.div>
+                </div>
+
             </div>
-        </motion.div>
-    );
-}
 
-export default Home;
+            {/* Quick Metrics Strip */}
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+                className="w-full mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
+            >
+                {heroMetrics.map((item, index) => (
+                    <div
+                        key={index}
+                        className="p-4 sm:p-5 rounded-2xl bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 text-left shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
+                    >
+                        <span className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
+                            {item.label}
+                        </span>
+                        <span className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white block">
+                            {item.value}
+                        </span>
+                        <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1 block">
+                            {item.highlight}
+                        </span>
+                    </div>
+                ))}
+            </motion.div>
+
+            {/* Contact Form Modal */}
+            <ContactForm isOpen={showForm} onClose={() => setShowForm(false)} />
+        </section>
+    );
+};
+
+export default React.memo(Home);

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { RiFileCopyLine, RiCheckLine } from "@remixicon/react";
+import { FiCopy, FiCheck, FiExternalLink } from "react-icons/fi";
 
-const ContactInfoCard = ({ icon, title, value, href, fullAddress, variants }) => {
+const ContactInfoCard = ({ icon, title, value, href, fullAddress }) => {
     const [copied, setCopied] = useState(false);
 
-    // Reset the "copied" icon after 2 seconds
     useEffect(() => {
         if (!copied) return;
         const timer = setTimeout(() => setCopied(false), 2000);
@@ -13,68 +11,46 @@ const ContactInfoCard = ({ icon, title, value, href, fullAddress, variants }) =>
     }, [copied]);
 
     const handleCopy = (e) => {
-        e.stopPropagation(); // Prevent link navigation
+        e.stopPropagation();
         e.preventDefault();
         const textToCopy = fullAddress || value;
         navigator.clipboard.writeText(textToCopy);
         setCopied(true);
     };
 
-    const isAddress = !!fullAddress;
-    // --- CORRECTED: Use a standard Google Maps query URL ---
-    const finalHref = isAddress
-        ? `https://maps.google.com/?q=${encodeURIComponent(fullAddress)}`
-        : href;
-
-    // Use a motion.a for addresses to make them clickable, otherwise a simple div
-    const WrapperComponent = isAddress ? motion.a : motion.div;
-
     return (
-        <WrapperComponent
-            variants={variants}
-            href={isAddress ? finalHref : undefined}
-            target={isAddress ? "_blank" : undefined}
-            rel={isAddress ? "noopener noreferrer" : undefined}
-            className="block h-full" // Ensures the wrapper fills the grid cell for consistent click area
-        >
-            <motion.div
-                whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }}
-                className="group relative flex h-full w-full flex-col items-center justify-center p-6 bg-white/60 dark:bg-gray-800/60 backdrop-blur-lg rounded-2xl border border-gray-200/50 dark:border-white/10 shadow-lg text-gray-800 dark:text-white cursor-pointer"
-            >
-                {/* Copy Button */}
-                <div className="absolute top-4 right-4 z-10">
-                    <button
-                        onClick={handleCopy}
-                        aria-label={`Copy ${title} to clipboard`}
-                        className="p-2 rounded-full text-gray-500 dark:text-gray-400 hover:bg-gray-200/80 dark:hover:bg-gray-700/80 transition-colors"
-                    >
-                        <AnimatePresence mode="wait" initial={false}>
-                            {copied ? (
-                                <motion.div key="check" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }}>
-                                    <RiCheckLine className="w-5 h-5 text-green-500" />
-                                </motion.div>
-                            ) : (
-                                <motion.div key="copy" initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }}>
-                                    <RiFileCopyLine className="w-5 h-5" />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </button>
+        <div className="rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 p-5 sm:p-6 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 text-left flex items-center justify-between group">
+            <div className="flex items-center gap-4">
+                <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700/60 flex-shrink-0">
+                    {icon}
                 </div>
-                
-                {/* Card Content */}
-                <div className="text-blue-500 dark:text-blue-400 mb-4">{icon}</div>
-                <h3 className="text-lg font-semibold mb-1">{title}</h3>
-                
-                {isAddress ? (
-                    <p className="text-sm text-center text-gray-600 dark:text-gray-300 break-words">{value}</p>
-                ) : (
-                    <a href={href} className="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-300 transition-colors break-words">
-                        {value}
-                    </a>
-                )}
-            </motion.div>
-        </WrapperComponent>
+                <div>
+                    <span className="font-mono text-xs uppercase tracking-wider text-slate-400 font-bold block">
+                        {title}
+                    </span>
+                    {href ? (
+                        <a
+                            href={href}
+                            className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors break-all"
+                        >
+                            {value}
+                        </a>
+                    ) : (
+                        <span className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white break-words">
+                            {value}
+                        </span>
+                    )}
+                </div>
+            </div>
+
+            <button
+                onClick={handleCopy}
+                aria-label={`Copy ${title} to clipboard`}
+                className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors ml-2 flex-shrink-0"
+            >
+                {copied ? <FiCheck className="text-emerald-500" size={16} /> : <FiCopy size={16} />}
+            </button>
+        </div>
     );
 };
 

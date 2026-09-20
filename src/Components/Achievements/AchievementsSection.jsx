@@ -1,159 +1,157 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { FaAward, FaCertificate, FaTrophy } from "react-icons/fa";
+import { FiAward, FiCheckCircle, FiCalendar, FiMapPin } from "react-icons/fi";
+import { FaTrophy, FaCertificate } from "react-icons/fa";
 
-const achievements = [
-  {
-    title: "Innovathon 2.0",
-    result: "3rd Place among 60+ teams",
-    date: "Jan 2025",
-    description: "Created Bob, a decentralized blockchain data marketplace at VNR VJIET.",
-    highlights: ["Solana marketplace", "Secure micro-transactions", "36-hour product execution"],
-  },
-  {
-    title: "BlockBinge Hackathon",
-    result: "2nd Place",
-    date: "Sept 2024",
-    description: "Built a decentralized real-time chat application hosted by MLSA-USAR Student Chapter.",
-    highlights: ["Real-time messaging", "Decentralized architecture", "Hackathon delivery"],
-  },
+const hackathonWins = [
   {
     title: "EPITOME'24 Hackathon",
-    result: "1st Place among 30+ teams",
+    placement: "1st Place Winner",
+    metric: "Rank 1 of 30+ Teams",
     date: "Mar 2024",
-    description: "Built EduWave, an AI-powered smart education platform at GRIET, Hyderabad.",
-    highlights: ["Gemini-powered ChatAI", "Role-based learning workflows", "MERN platform"],
+    location: "GRIET, Hyderabad",
+    project: "EduWave – AI Smart Education Platform",
+    description: "Architected a full-stack educational ecosystem with Gemini-powered AI assistants and live video learning workflows.",
+    tags: ["1st Place", "Gemini API", "MERN Stack", "EdTech"],
+    badgeBg: "bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400",
   },
   {
-    title: "HackSphere",
-    result: "2nd Place among 50+ teams",
+    title: "Innovathon 2.0",
+    placement: "3rd Place Podium",
+    metric: "Rank 3 of 60+ Teams",
+    date: "Jan 2025",
+    location: "VNR VJIET",
+    project: "Bob – Solana Decentralized Marketplace",
+    description: "Built a high-speed decentralized data marketplace with 0.000005 SOL micro-transaction costs under a 36-hour sprint.",
+    tags: ["3rd Place", "Solana SDK", "Micro-Transactions", "Solana Marketplace"],
+    badgeBg: "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400",
+  },
+  {
+    title: "HackSphere Hackathon",
+    placement: "2nd Place Runner-Up",
+    metric: "Rank 2 of 50+ Teams",
     date: "Oct 2023",
-    description: "Built Serenity, a real-time collaboration platform at BITS Pilani.",
-    highlights: ["Real-time collaboration", "Rapid prototyping", "Team-based product design"],
+    location: "BITS Pilani",
+    project: "Serenity – Real-Time Collaboration Hub",
+    description: "Delivered a rapid real-time team collaboration platform with distributed synchronization in a competitive hackathon.",
+    tags: ["2nd Place", "Real-Time Comms", "Rapid Build", "BITS Pilani"],
+    badgeBg: "bg-indigo-500/10 border-indigo-500/30 text-indigo-600 dark:text-indigo-400",
   },
 ];
 
 const certifications = [
   {
-    title: "Oracle OCI AI Foundations Associate",
-    issuer: "Oracle",
+    title: "Oracle Cloud Infrastructure (OCI) AI Foundations Associate",
+    issuer: "Oracle University",
+    date: "Certified 2025",
     description:
-      "Completed the learning path covering Artificial Intelligence, Machine Learning, Deep Learning, and Generative AI fundamentals with practical applications on Oracle Cloud Infrastructure.",
-    highlights: ["AI and ML fundamentals", "Deep Learning", "Generative AI", "Oracle Cloud Infrastructure"],
+      "Comprehensive certification covering Artificial Intelligence, Machine Learning, Deep Learning, Large Language Models, and Generative AI services on Oracle Cloud Infrastructure.",
+    topics: ["Generative AI", "Deep Learning", "LLMs & Embeddings", "Oracle Cloud (OCI)", "ML Pipelines"],
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
-};
-
-const cardVariants = {
-  hidden: { y: 35, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 18 } },
-};
-
-const titleVariants = {
-  hidden: { scale: 0.8, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 20 } },
-};
-
-function AchievementCard({ item }) {
-  return (
-    <motion.div
-      variants={cardVariants}
-      className="group relative h-full rounded-2xl border border-gray-300/80 dark:border-gray-700 bg-white/70 dark:bg-gray-800/70 p-6 text-left shadow-lg backdrop-blur-md transition-colors hover:border-green-500/50 dark:hover:border-green-400/70"
-    >
-      <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-green-500 dark:bg-green-400 scale-y-0 group-hover:scale-y-100 transition-transform duration-500" />
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
-          <p className="mt-1 font-semibold text-green-600 dark:text-green-400">{item.result}</p>
-        </div>
-        <span className="text-sm font-medium text-gray-500 dark:text-gray-400 whitespace-nowrap">{item.date}</span>
-      </div>
-      <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">{item.description}</p>
-      <div className="mt-5 flex flex-wrap gap-2">
-        {item.highlights.map((highlight) => (
-          <span key={highlight} className="rounded-full bg-cyan-100/80 dark:bg-cyan-900/50 px-3 py-1 text-xs font-semibold text-cyan-800 dark:text-cyan-300">
-            {highlight}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
-function CertificationCard({ item }) {
-  return (
-    <motion.div
-      variants={cardVariants}
-      className="rounded-2xl border border-blue-300/70 dark:border-blue-800/70 bg-white/70 dark:bg-gray-800/70 p-6 text-left shadow-lg backdrop-blur-md"
-    >
-      <div className="flex items-start gap-4">
-        <div className="rounded-2xl bg-blue-100 dark:bg-blue-900/50 p-3 text-blue-600 dark:text-blue-300">
-          <FaCertificate size={24} />
-        </div>
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.title}</h3>
-          <p className="mt-1 text-sm font-semibold text-blue-600 dark:text-blue-300">{item.issuer}</p>
-        </div>
-      </div>
-      <p className="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">{item.description}</p>
-      <div className="mt-5 flex flex-wrap gap-2">
-        {item.highlights.map((highlight) => (
-          <span key={highlight} className="rounded-full bg-green-100/80 dark:bg-green-900/40 px-3 py-1 text-xs font-semibold text-green-800 dark:text-green-300">
-            {highlight}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 function AchievementsSection() {
   return (
-    <motion.section
+    <section
       id="Achievements"
-      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-24 text-center"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      className="w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-left"
     >
-      <motion.div className="relative mb-12" variants={titleVariants}>
-        <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 dark:from-blue-400 dark:via-purple-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
-          Achievements
+      {/* Section Header */}
+      <div className="mb-14">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 mb-3 border border-slate-200 dark:border-slate-700/60">
+          <span>// 06. HONORS & RECOGNITION</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Hackathon Honors & Certifications
         </h2>
-        <motion.div className="absolute left-1/2 bottom-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 rounded-full" initial={{ width: 0, x: "-50%" }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }} />
-      </motion.div>
-
-      <div className="w-full max-w-7xl space-y-16">
-        <motion.div variants={containerVariants}>
-          <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" variants={titleVariants}>
-            <span className="relative z-10 flex items-center gap-3"><FaTrophy className="text-yellow-500" /> Hackathon Wins</span>
-            <motion.div className="my-1 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} />
-          </motion.h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {achievements.map((item) => (
-              <AchievementCard key={item.title} item={item} />
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div variants={containerVariants}>
-          <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" variants={titleVariants}>
-            <span className="relative z-10 flex items-center gap-3"><FaAward className="text-blue-500" /> Certifications</span>
-            <motion.div className="my-1 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} />
-          </motion.h3>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-            {certifications.map((item) => (
-              <CertificationCard key={item.title} item={item} />
-            ))}
-          </div>
-        </motion.div>
+        <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+          Proven product execution in high-intensity engineering hackathons and verified cloud AI credentials.
+        </p>
       </div>
-    </motion.section>
+
+      {/* Hackathon Podium Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {hackathonWins.map((item, idx) => (
+          <div
+            key={idx}
+            className="rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-7 shadow-xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <span className={`font-mono text-xs px-3 py-1 rounded-full font-bold border ${item.badgeBg}`}>
+                  {item.placement}
+                </span>
+                <span className="flex items-center gap-1 font-mono text-xs text-slate-500 dark:text-slate-400">
+                  <FiCalendar size={12} />
+                  {item.date}
+                </span>
+              </div>
+
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+                {item.title}
+              </h3>
+
+              <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-3 font-mono">
+                <FiMapPin size={12} />
+                <span>{item.location}</span>
+                <span>•</span>
+                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{item.metric}</span>
+              </div>
+
+              <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2">
+                Project: {item.project}
+              </p>
+
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                {item.description}
+              </p>
+            </div>
+
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
+              {item.tags.map((t) => (
+                <span key={t} className="font-mono text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Oracle Certification Banner */}
+      {certifications.map((cert, i) => (
+        <div
+          key={i}
+          className="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-950 to-indigo-950 border border-slate-800 p-6 sm:p-8 text-white shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6"
+        >
+          <div className="flex items-start gap-4">
+            <div className="p-3.5 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 text-indigo-400 flex-shrink-0">
+              <FaCertificate size={28} />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 flex-wrap mb-1">
+                <span className="font-mono text-[11px] px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">
+                  {cert.issuer}
+                </span>
+                <span className="font-mono text-xs text-slate-400">{cert.date}</span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                {cert.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed mb-4">
+                {cert.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {cert.topics.map((tp) => (
+                  <span key={tp} className="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-800/80 text-slate-300 border border-slate-700/60">
+                    {tp}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </section>
   );
 }
 

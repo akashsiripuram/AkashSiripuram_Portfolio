@@ -1,173 +1,178 @@
 import React, { Suspense } from "react";
 import { motion } from "framer-motion";
-import InteractiveText from "./InteractiveText";
+import { 
+  FiCpu, 
+  FiTerminal, 
+  FiLayers, 
+  FiDatabase, 
+  FiCode, 
+  FiActivity, 
+  FiAward, 
+  FiCheckCircle 
+} from "react-icons/fi";
 
-// Lazy load components that are not immediately visible
 const EducationCard = React.lazy(() => import("./EducationCard"));
 const TechnicalProfileCard = React.lazy(() => import("./TechnicalProfileCard"));
-const Hobbies = React.lazy(() => import("./Hobbies"));
 
-// --- Constants (no changes needed here) ---
-
-const introText = `Hi, I'm Akash Siripuram, a Computer Science undergraduate, full-stack developer, and AI enthusiast who enjoys building reliable products from idea to deployment. I work across React, Node.js, Express, MongoDB, REST APIs, real-time systems, and AI integrations, with a strong interest in clean architecture, practical automation, and user-focused engineering.
-My projects include Gemini-powered learning tools, real-time civic platforms, Solana-based marketplaces, collaborative applications, and production-ready MERN systems. I am currently gaining enterprise exposure as a Project Intern, while continuing to focus on sharpening my individual skills in full-stack development, AI-powered applications, problem solving, and scalable software engineering.`;
-
-const profileHighlights = [
-  { value: "AI", label: "integrated Gemini-powered assistants, learning tools, and smart workflows" },
-  { value: "3+", label: "full-stack production applications built at Digital Guruji" },
-  { value: "4", label: "hackathon podium finishes across AI, blockchain, and collaboration products" },
-  { value: "9.15", label: "CGPA in B.Tech CSE at CVR College of Engineering" },
+const capabilityPillars = [
+  {
+    icon: FiCpu,
+    title: "AI & Agentic Systems",
+    tagline: "LangGraph, RAG & LLM Workflows",
+    description: "Architecting multi-agent reasoning graphs, context-aware RAG pipelines, and automated browser extensions with Gemini and FastAPI.",
+    metrics: "LangGraph • LangChain • PyTorch • Gemini",
+    accent: "text-cyan-500 dark:text-cyan-400",
+    border: "hover:border-cyan-500/50",
+  },
+  {
+    icon: FiTerminal,
+    title: "Enterprise Automation",
+    tagline: "Oracle C2M & Batch Processing",
+    description: "Developing robust CRM workflows, rate schedules, tariffs, and high-volume billing batch pipelines using Groovy and 4GL.",
+    metrics: "Oracle C2M/MTM • Groovy • 4GL • Batch Jobs",
+    accent: "text-emerald-500 dark:text-emerald-400",
+    border: "hover:border-emerald-500/50",
+  },
+  {
+    icon: FiLayers,
+    title: "Full-Stack Architecture",
+    tagline: "MERN & Scalable Web Apps",
+    description: "Building production full-stack systems with React.js, Next.js, Node.js, Express, and WebSockets with resilient data flows and clean APIs.",
+    metrics: "React • Next.js • Express • REST • WebSockets",
+    accent: "text-indigo-500 dark:text-indigo-400",
+    border: "hover:border-indigo-500/50",
+  },
+  {
+    icon: FiCode,
+    title: "Algorithmic Engineering",
+    tagline: "Data Structures & Speed Coding",
+    description: "Active competitive programming background with 1100+ problems solved across LeetCode (1700), Codeforces, and CodeChef.",
+    metrics: "1100+ Solved • Graphs • Dynamic Programming",
+    accent: "text-amber-500 dark:text-amber-400",
+    border: "hover:border-amber-500/50",
+  },
 ];
 
 const technicalProfiles = [
-  { platform: "leetcode", username: "Akash_siripuram", profileLink: "https://leetcode.com/Akash_siripuram", fallbackStats: { totalSolved: 466, rating: 1934 } },
-  { platform: "codeforces", username: "akash_siripuram", profileLink: "https://codeforces.com/profile/akash_siripuram", fallbackStats: { totalSolved: 212, rating: 1438 } },
-  { platform: "codechef", username: "akash_021", profileLink: "https://www.codechef.com/users/akash_021", fallbackStats: { totalSolved: 364, rating: "1481" } },
+  { platform: "leetcode", username: "Akash_siripuram", profileLink: "https://leetcode.com/u/Akash_siripuram/", fallbackStats: { totalSolved: 713, rating: 1700, rankBadge: 'Knight (1700)' } },
+  { platform: "codeforces", username: "akash_siripuram", profileLink: "https://codeforces.com/profile/akash_siripuram", fallbackStats: { totalSolved: 93, rating: 1136, rankBadge: 'Pupil (1136)' } },
+  { platform: "codechef", username: "akash_021", profileLink: "https://www.codechef.com/users/akash_021", fallbackStats: { totalSolved: 370, rating: 1469, rankBadge: '2★ (1469)' } },
 ];
 
 const educationData = [
-  { title: "Graduation", College: "CVR College of Engineering", Course: "Bachelor of Technology", Branch: "Computer Science and Engineering", Marks: "CGPA: 9.15/10", Year: "Duration: 2022 - 2026" },
-  { title: "Senior Secondary", College: "Alphores Junior College", Course: "Physics, Chemistry and Mathematics", Branch: "Marks: 989/1000", Marks: "Percentage: 98.90 %", Year: "Duration: 2020 - 2022" },
-  { title: "Secondary Education", College: "Siddartha High School", Branch: "CGPA : 10", Marks: "Percentage: 100%", Year: "Duration: 2019 - 2020" },
+  { title: "Bachelor of Technology", College: "CVR College of Engineering", Course: "Computer Science & Engineering", Branch: "B.Tech CSE", Marks: "9.18 / 10 CGPA", Year: "2022 - 2026" },
+  { title: "Senior Secondary (12th)", College: "Alphores Junior College", Course: "Mathematics, Physics & Chemistry", Branch: "Marks: 989/1000", Marks: "98.90%", Year: "2020 - 2022" },
+  { title: "Secondary School (10th)", College: "Siddartha High School", Course: "General Science & Mathematics", Branch: "State Board", Marks: "10 / 10 CGPA", Year: "2019 - 2020" },
 ];
-
-const lang = [
-  { name: "English", level: "Full Proficiency" },
-  { name: "Telugu", level: "Native" },
-];
-
-// --- Animation Variants (no changes needed here) ---
-const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } } };
-const itemVariants = { hidden: { y: 50, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100, damping: 15 } } };
-const titleVariants = { hidden: { scale: 0.8, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 200, damping: 20 } } };
-const cardVariants = { hidden: { y: 30, opacity: 0, scale: 0.9 }, visible: { y: 0, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 120, damping: 15 } } };
 
 const FallbackLoader = () => (
-  <div className="flex justify-center items-center h-48">
-    <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+  <div className="flex justify-center items-center h-32">
+    <div className="w-7 h-7 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 
-const languageBoxVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { type: "spring", stiffness: 100, damping: 15 },
-    },
-};
-
 function About() {
   return (
-    <motion.section
+    <section
       id="About"
-      className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-16 text-center text-gray-900 dark:text-gray-100 duration-500"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      className="w-full py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto text-left"
     >
-      {/* Section Title */}
-      <motion.div className="relative mb-12" variants={titleVariants}>
-        <motion.h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 dark:from-blue-400 dark:via-purple-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4" animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }} transition={{ duration: 5, repeat: Infinity, ease: "linear" }} style={{ backgroundSize: "200% 100%" }}>
-          About Me
-        </motion.h2>
-        <motion.div className="absolute left-1/2 bottom-0 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 rounded-full" initial={{ width: 0, x: "-50%" }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.3 }} />
-      </motion.div>
-
-      {/* Introduction */}
-      <motion.div className="max-w-6xl mb-16" variants={itemVariants}>
-        <div className="text-justify text-base sm:text-lg lg:text-xl leading-relaxed text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-800 p-8 rounded-2xl border border-gray-300 dark:border-gray-700 shadow-xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-white dark:bg-gray-800" />
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-purple-50/50 dark:from-blue-900/20 dark:via-transparent dark:to-purple-900/20" />
-          <InteractiveText text={introText} className="relative z-10" />
+      {/* Section Header */}
+      <div className="mb-14">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400 mb-3 border border-slate-200 dark:border-slate-700/60">
+          <span>// 01. CAPABILITIES & TELEMETRY</span>
         </div>
-      </motion.div>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          Engineering Identity & Core Pillars
+        </h2>
+        <p className="mt-3 text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
+          Combining enterprise automation, deep algorithmic problem solving, and modern generative AI architectures to build robust, high-impact software systems.
+        </p>
+      </div>
 
-      <motion.div className="w-full max-w-7xl mb-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" variants={itemVariants}>
-        {profileHighlights.map((highlight) => (
-          <motion.div
-            key={highlight.value}
-            variants={cardVariants}
-            className="bg-white/70 dark:bg-gray-800/70 border border-gray-300 dark:border-gray-700 rounded-2xl p-6 text-left shadow-lg"
+      {/* 4 Core Capability Pillars */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
+        {capabilityPillars.map((pillar, idx) => (
+          <div
+            key={idx}
+            className={`p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 shadow-xs hover:shadow-md transition-all duration-300 ${pillar.border}`}
           >
-            <p className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{highlight.value}</p>
-            <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">{highlight.label}</p>
-          </motion.div>
+            <div className="flex items-start justify-between gap-4 mb-4">
+              <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200/60 dark:border-slate-700/60">
+                <pillar.icon size={22} className={pillar.accent} />
+              </div>
+              <span className="font-mono text-xs px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/60 text-slate-500 dark:text-slate-400">
+                PILLAR 0{idx + 1}
+              </span>
+            </div>
+
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+              {pillar.title}
+            </h3>
+            <p className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold mb-3">
+              {pillar.tagline}
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              {pillar.description}
+            </p>
+
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
+              <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
+                {pillar.metrics}
+              </span>
+            </div>
+          </div>
         ))}
-      </motion.div>
+      </div>
 
-      <Suspense fallback={<FallbackLoader />}>
-        {/* Technical Profiles Section */}
-        <motion.div className="w-full max-w-7xl mb-16" variants={itemVariants}>
-          <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" whileHover={{ x: 10 }} transition={{ type: "spring", stiffness: 300 }}>
-            <span className="relative z-10">🚀 Technical Profiles</span>
-            <motion.div className="my-1 bottom-0 left-0 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} />
-          </motion.h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {/* Dynamic Live Coding Telemetry */}
+      <div className="mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-3 border-b border-slate-200 dark:border-slate-800 gap-3">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+              <FiActivity className="text-emerald-500" />
+              Live Coding Telemetry
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Dynamically retrieved in real-time from official platform APIs and scrapers.
+            </p>
+          </div>
+          <span className="font-mono text-xs px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/40 font-semibold">
+            1100+ Total Problems Solved
+          </span>
+        </div>
+
+        <Suspense fallback={<FallbackLoader />}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {technicalProfiles.map((profile, index) => (
-              <motion.div key={index} variants={cardVariants} whileTap={{ scale: 0.98 }} className="transform-gpu">
-                <TechnicalProfileCard {...profile} />
-              </motion.div>
+              <TechnicalProfileCard key={index} {...profile} />
             ))}
           </div>
-        </motion.div>
+        </Suspense>
+      </div>
 
-        {/* Educational Background Section */}
-        <motion.div className="w-full max-w-7xl mb-16" variants={itemVariants}>
-          <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" whileHover={{ x: 10 }} transition={{ type: "spring", stiffness: 300 }}>
-            <span className="relative z-10">🎓 Education </span>
-            <motion.div className="my-1 bottom-0 left-0 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} viewport={{ once: true }} whileInView={{ width: "100%" }} transition={{ duration: 0.8, delay: 0.2 }} />
-          </motion.h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+      {/* Academic Background */}
+      <div>
+        <div className="mb-6 pb-3 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <div>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">
+              Academic Background
+            </h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Consistent high-academic excellence in Computer Science & Engineering.
+            </p>
+          </div>
+        </div>
+
+        <Suspense fallback={<FallbackLoader />}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {educationData.map((edu, idx) => (
-              <motion.div key={idx} variants={cardVariants} className="transform-gpu">
-                <EducationCard {...edu} />
-              </motion.div>
+              <EducationCard key={idx} {...edu} />
             ))}
           </div>
-        </motion.div>
-
-        {/* Hobbies Section */}
-        <motion.div className="w-full max-w-7xl mb-16" variants={itemVariants}>
-          <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" whileHover={{ x: 10 }} transition={{ type: "spring", stiffness: 300 }}>
-            <span className="relative z-10">🎨 Hobbies & Interests</span>
-            <motion.div className="my-1 bottom-0 left-0 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} viewport={{ once: true }} whileInView={{ width: "100%" }} transition={{ duration: 0.8, delay: 0.2 }} />
-          </motion.h3>
-          <motion.div variants={cardVariants} className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 dark:border-gray-700/50 shadow-xl">
-            <Hobbies />
-          </motion.div>
-        </motion.div>
-      </Suspense>
-
-      {/* Language Section */}
-      <motion.div className="w-full max-w-7xl" variants={containerVariants}>
-        <motion.h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-left mb-8 text-gray-800 dark:text-gray-200 relative" whileHover={{ x: 10 }} transition={{ type: "spring", stiffness: 300 }} variants={itemVariants}>
-          <span className="relative z-10">🌍 Languages</span>
-          <motion.div className="my-1 bottom-0 left-0 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 dark:from-green-400 dark:to-blue-400" initial={{ width: 0 }} viewport={{ once: true }} whileInView={{ width: "100%" }} transition={{ duration: 0.8, delay: 0.2 }} />
-        </motion.h3>
-
-        {/* --- FIX: Map over the 'lang' array to display each language --- */}
-        <motion.div 
-                    className="flex flex-col sm:flex-row items-center justify-center gap-8"
-                    variants={containerVariants} // This will stagger the children
-                >
-          {lang.map((language) => (
-            <motion.div 
-            key={language.name} 
-            className="text-center p-6 rounded-2xl border border-gray-300 dark:border-gray-700 cursor-pointer  hover:border-green-400 dark:hover:border-green-400 transition-colors duration-300 w-full sm:w-64 bg-white/50 dark:bg-gray-800/50 shadow-lg"
-            variants={languageBoxVariants}>
-              <h4 className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
-                {language.name}
-              </h4>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 font-medium">
-                {language.level}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
-    </motion.section>
+        </Suspense>
+      </div>
+    </section>
   );
 }
 
