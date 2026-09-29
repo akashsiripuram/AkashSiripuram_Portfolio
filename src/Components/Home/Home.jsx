@@ -110,7 +110,7 @@ const Home = () => {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl mb-8"
                     >
-                        I'm Akash Siripuram, a Software Developer at Oracle and competitive programmer focused on building production-ready web platforms, LLM/RAG agentic workflows, and enterprise automation pipelines. From automating high-volume utility billing to shipping hackathon-winning AI and full-stack software products.
+                        I'm Akash Siripuram, an Associate Consultant at Oracle and competitive programmer focused on building production-ready web platforms, LLM/RAG agentic workflows, and enterprise automation pipelines. From automating high-volume utility billing to shipping hackathon-winning AI and full-stack software products.
                     </motion.p>
 
                     {/* Action Buttons */}

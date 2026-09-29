@@ -4,7 +4,7 @@ import ExperienceCard from "./ExperienceCard";
 const professionalExperience = [
   {
     company: "Oracle",
-    role: "Associate Consultant Developer",
+    role: "Associate Consultant",
     duration: "Jul 2026 - Present",
     place: "Hyderabad, India",
     highlightBadge: "Current Role",
