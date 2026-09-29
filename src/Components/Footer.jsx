@@ -41,7 +41,7 @@ const Footer = () => {
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         </div>
                         <span className="text-xs text-slate-500 font-mono mt-0.5">
-                            Software Developer @ Oracle • AI Systems Engineer
+                            Associate Consultant Developer @ Oracle • AI Systems Engineer
                         </span>
                     </div>
 

@@ -59,7 +59,7 @@ const Home = () => {
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         <span className="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300">
-                            Software Developer @ Oracle
+                            Associate Consultant Developer @ Oracle
                         </span>
                         <span className="text-slate-300 dark:text-slate-600">|</span>
                         <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
