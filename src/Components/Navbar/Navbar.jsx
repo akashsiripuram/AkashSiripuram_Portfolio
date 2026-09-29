@@ -85,7 +85,7 @@ const Navbar = () => {
                     <div className="flex items-center gap-2">
                         {/* Resume Shortcut */}
                         <a
-                            href="https://drive.google.com/file/d/129IubG0I4c9f6134u4YfOLasVO73xScU/view?usp=drive_link"
+                            href="https://drive.google.com/file/d/1HQtgjVaGF-j7RmHRoow5oWVXwp9M8smB/view?usp=drive_link"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/40 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors"
@@ -171,7 +171,7 @@ const Navbar = () => {
                                 ))}
                                 <div className="mt-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                                     <a
-                                        href="https://drive.google.com/file/d/129IubG0I4c9f6134u4YfOLasVO73xScU/view?usp=drive_link"
+                                        href="https://drive.google.com/file/d/1HQtgjVaGF-j7RmHRoow5oWVXwp9M8smB/view?usp=drive_link"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-xs font-bold text-white bg-slate-900 dark:bg-emerald-600"
